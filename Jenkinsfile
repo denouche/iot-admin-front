@@ -41,8 +41,9 @@ node {
       stage('Release') {
         releaseImageName = "${projectName}-release"
         docker.build(releaseImageName, "-f Dockerfile.release .")
+        sh "pwd && ls -al && ls -al dist"
         sshagent (['6394728b-d88f-4534-b168-a513d8e6345b']) {
-          sh "docker run --rm -v /home/denouche/volumes/jenkins-agents/.ssh/id_rsa:/root/.ssh/id_rsa -v \$(pwd | sed 's|/root/workspace/|/home/denouche/volumes/jenkins/workspace-tmp/|'):/usr/src/app/ ${releaseImageName} bash -c 'make release'"
+          sh "docker run --rm -v /home/denouche/volumes/jenkins-agents/.ssh/id_rsa:/root/.ssh/id_rsa -v \$(pwd | sed 's|/root/workspace/|/home/denouche/volumes/jenkins/workspace-tmp/|'):/usr/src/app/ ${releaseImageName} bash -c 'pwd && ls -al && ls -al dist && make release'"
         }
         sh "docker rmi ${releaseImageName}"
 
