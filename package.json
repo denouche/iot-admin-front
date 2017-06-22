@@ -41,13 +41,13 @@
     "standard-version": "^4.0.0"
   },
   "scripts": {
-    "release": "standard-version",
+    "release": "standard-version -a",
     "init": "node -e \"require('go-ci-common')()\"",
     "start": "grunt"
   },
   "standard-version": {
     "scripts": {
-      "precommit": "grunt -v build --mode=prod && git add dist"
+      "precommit": "grunt -v build --mode=prod"
     }
   }
 }
