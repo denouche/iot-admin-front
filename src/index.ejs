@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<html lang="fr" data-ng-app="iotAdminApplication">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta content="width=device-width,initial-scale=1.0,minimum-scale=1,maximum-scale=1" name="viewport">
+        <link rel="icon" href="./assets/images/favicon.ico">
+        <title data-translate="main.page_title"></title>
+
+<% css.common.forEach(function(cssFile){ %>
+        <link rel="stylesheet" href="<%= cssFile %>" type="text/css"/>
+<% }) %>
+<% css.app.forEach(function(cssFile){ %>
+        <link rel="stylesheet" href="<%= cssFile %>" type="text/css"/>
+<% }) %>
+    </head>
+
+    <body>
+
+        <div data-ng-include="'app/components/navbar/navbar-view.html'"></div>
+
+        <div class="container">
+            <div id="content" data-ng-view></div>
+        </div>
+
+        <script type="text/javascript" src="<%= js.common %>"></script>
+
+<% config.forEach(function(configFile){ %>
+        <script type="text/javascript" src="<%= configFile %>"></script>
+<% }) %>
+
+<% js.app.forEach(function(jsFile){ %>
+        <script type="text/javascript" src="<%= jsFile %>"></script>
+<% }) %>
+    </body>
+</html>
+
+

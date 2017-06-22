@@ -1,0 +1,15 @@
+FROM node:6
+
+RUN apt-get update \
+    && apt-get install -y git-core \
+    && apt-get clean
+
+RUN git config --global user.email 'jenkins@leveugle.net'
+RUN git config --global user.name 'Jenkins'
+
+RUN mkdir /root/.ssh && echo "StrictHostKeyChecking no" > /root/.ssh/config
+
+RUN npm install -g grunt-cli
+
+WORKDIR /usr/src/app
+

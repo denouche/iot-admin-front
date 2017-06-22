@@ -1,0 +1,47 @@
+{
+  "name": "iot-admin-front",
+  "version": "0.0.1",
+  "dependencies": {
+    "angular": "~1.6.4",
+    "angular-animate": "~1.6.4",
+    "angular-dynamic-locale": "~0.1.32",
+    "angular-i18n": "~1.6.4",
+    "angular-route": "~1.6.4",
+    "angular-sanitize": "~1.6.4",
+    "angular-touch": "~1.6.4",
+    "angular-translate": "~2.15.1",
+    "angular-translate-loader-partial": "^2.15.1",
+    "angular-ui-bootstrap": "^2.5.0",
+    "bootstrap": "^3.3.7",
+    "lodash": "^4.17.4",
+    "moment": "^2.18.1"
+  },
+  "devDependencies": {
+    "ejs": "^2.5.3",
+    "grunt": "^0.4.5",
+    "grunt-concurrent": "^2.0.1",
+    "grunt-contrib-clean": "^1.0.0",
+    "grunt-contrib-concat": "^1.0.1",
+    "grunt-contrib-connect": "^1.0.2",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-cssmin": "^1.0.2",
+    "grunt-contrib-htmlmin": "^2.0.0",
+    "grunt-contrib-jshint": "^1.1.0",
+    "grunt-contrib-uglify": "^2.0.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-filerev": "^2.3.1",
+    "grunt-html-angular-validate": "^0.5.8",
+    "grunt-html2js": "^0.3.6",
+    "grunt-ng-annotate": "^3.0.0",
+    "grunt-templater": "0.0.6",
+    "grunt-text-replace": "^0.4.0",
+    "grunt-usemin": "^3.1.1",
+    "load-grunt-tasks": "^3.1.0",
+    "standard-version": "^4.0.0"
+  },
+  "scripts": {
+    "release": "standard-version && grunt build --mode=prod",
+    "init": "node -e \"require('go-ci-common')()\"",
+    "start": "grunt"
+  }
+}

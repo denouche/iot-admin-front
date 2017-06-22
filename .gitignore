@@ -1,0 +1,9 @@
+*~
+*.pyc
+node_modules/
+src/index.html
+tmp/
+src/templates.js
+src/assets/libs/
+npm-debug.log
+
