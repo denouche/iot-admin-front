@@ -33,6 +33,7 @@
     "grunt-html-angular-validate": "^0.5.8",
     "grunt-html2js": "^0.3.6",
     "grunt-ng-annotate": "^3.0.0",
+    "grunt-ng-constant": "^2.0.1",
     "grunt-templater": "0.0.6",
     "grunt-text-replace": "^0.4.0",
     "grunt-usemin": "^3.1.1",
@@ -40,8 +41,14 @@
     "standard-version": "^4.0.0"
   },
   "scripts": {
-    "release": "standard-version && grunt build --mode=prod",
+    "release": "standard-version",
     "init": "node -e \"require('go-ci-common')()\"",
     "start": "grunt"
+  },
+  "standard-version": {
+    "scripts": {
+      "precommit": "grunt build --mode=prod && git add dist",
+      "posttag": "git rm -rf dist && git commit -m'chore(release): clean dist folder after release'"
+    }
   }
 }

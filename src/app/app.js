@@ -1,5 +1,6 @@
 angular.module('iotAdminApplication', [
     'pascalprecht.translate',
+    'configVersion',
     'tmh.dynamicLocale',
     'ngRoute',
     'ngSanitize',
@@ -52,4 +53,8 @@ angular.module('iotAdminApplication', [
         tmhDynamicLocale.set(data.language);
     });
 
+})
+.run(function($rootScope, VERSION) {
+    'use strict';
+    $rootScope.VERSION = VERSION;
 });
