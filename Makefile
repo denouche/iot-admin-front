@@ -18,9 +18,6 @@ clean:
 getdeps:
 	npm install
 
-dev:
-	grunt
-
 buildProdAndChangelogAndTag:
 	grunt build --mode=prod
 	npm run release
@@ -29,7 +26,4 @@ release: clean getdeps
 	npm run release
 
 start:
-	grunt
-
-start-local-staging:
-	API_URL="https://iot.leveugle.net/" grunt
+	API_URL="http://localhost:3000/" grunt

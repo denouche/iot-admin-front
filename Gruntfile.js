@@ -2,7 +2,8 @@ module.exports = function (grunt) {
     "use strict";
 
     require('load-grunt-tasks')(grunt);
-    let http = require('http');
+    let http = require('http'),
+        https = require('https');
 
     // For local development purpose only
     var devProfileName = 'dev';
@@ -126,7 +127,7 @@ module.exports = function (grunt) {
                             let baseUriPattern = new RegExp('^/(api)/(.*)?'),
                                 baseUriMatcher = req.url.match(baseUriPattern);
                             if(baseUriPattern.test(req.url)) {
-                                var body = '';
+                                let body = '';
                                 req.on('data', function(chunk) {
                                     body += chunk;
                                 }).on('end', function() {
@@ -134,24 +135,41 @@ module.exports = function (grunt) {
                                         urlPattern = new RegExp('^(https?:)//([^/:]+)(?::(\\d+))?(/.*)?$'),
                                         matcher;
 
+                                    if(!defaultUrl) {
+                                        grunt.log.writeln('Missing API_URL environment variable pointing to the iot-admin-api backend');
+                                    }
+
                                     if(baseUriMatcher[1] === 'api') {
                                         matcher = defaultUrl.match(urlPattern);
                                     }
                                     let destPath = matcher[4] + (baseUriMatcher[2] || '');
                                     
 
-                                    grunt.log.writeln(`Proxy request from [${req.method} ${req.url}] to [${req.method} ${matcher[1]}//${matcher[2]}:${matcher[3]}${destPath}]`);
-                                    var proxyfiedRequest = http.request({
+                                    grunt.log.writeln(`Proxy request from [${req.method} ${req.url}] to [${req.method} ${matcher[1]}//${matcher[2] + (matcher[3] ? ':' + matcher[3] : '') + destPath}]`);
+                                    let reqParams = {
                                         protocol: matcher[1],
                                         host: matcher[2],
-                                        port: matcher[3],
                                         method: req.method,
                                         path: destPath,
                                         headers: {
                                             accept: req.headers.accept || 'application/json'
                                         }
-                                    }, function(proxyfiedResponse) {
-                                        var proxyfiedResponseBody = '';
+                                    };
+                                    let caller;
+                                    if(matcher[1] === 'http:') {
+                                        caller = http;
+                                    } else if(matcher[1] === 'https:') {
+                                        caller = https;
+                                    } else {
+                                        grunt.log.writeln(`Unsupported protocol ${matcher[1]}`);
+                                    }
+
+                                    if(matcher[3]) {
+                                        reqParams.port = matcher[3];
+                                    }
+                                    
+                                    let proxyfiedRequest = caller.request(reqParams, function(proxyfiedResponse) {
+                                        let proxyfiedResponseBody = '';
                                         proxyfiedResponse.on('data', function(chunk) {
                                             proxyfiedResponseBody += chunk;
                                         }).on('end', function() {
