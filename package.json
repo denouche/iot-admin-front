@@ -1,6 +1,6 @@
 {
   "name": "iot-admin-front",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "dependencies": {
     "angular": "~1.6.4",
     "angular-animate": "~1.6.4",
@@ -41,14 +41,13 @@
     "standard-version": "^4.0.0"
   },
   "scripts": {
-    "release": "standard-version",
+    "release": "standard-version -a",
     "init": "node -e \"require('go-ci-common')()\"",
     "start": "grunt"
   },
   "standard-version": {
     "scripts": {
-      "precommit": "grunt build --mode=prod && git add dist",
-      "posttag": "git rm -rf dist && git commit -m'chore(release): clean dist folder after release'"
+      "postchangelog": "grunt -v build --mode=prod && git add dist"
     }
   }
 }
