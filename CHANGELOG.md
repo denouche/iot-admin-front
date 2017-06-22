@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.1.0"></a>
+# [0.1.0](https://github.com/denouche/iot-admin-front/compare/v0.0.3...v0.1.0) (2017-06-22)
+
+
+### Features
+
+* work on release process, bump version to next minor ([994afc4](https://github.com/denouche/iot-admin-front/commit/994afc4))
+
+
+
 <a name="0.0.4"></a>
 ## [0.0.4](https://github.com/denouche/iot-admin-front/compare/v0.0.3...v0.0.4) (2017-06-22)
 
