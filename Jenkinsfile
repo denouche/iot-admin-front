@@ -32,7 +32,7 @@ node {
 
     stage('Build project') {
       docker.build("${buildImage}", "-f Dockerfile.build .")
-      sh "docker run --rm -v \$(pwd):/usr/src/app/ ${buildImage} bash -c 'make clean getdeps && grunt build --mode=prod'"
+      sh "docker run --rm -v \$(pwd | sed 's|/root/workspace/|/home/denouche/volumes/jenkins/workspace-tmp/|'):/usr/src/app/ ${buildImage} bash -c 'make clean getdeps && grunt build --mode=prod'"
       
       docker.build("${imageName}", '.')
     }
