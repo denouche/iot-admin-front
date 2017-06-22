@@ -48,7 +48,7 @@
   "standard-version": {
     "scripts": {
       "precommit": "grunt build --mode=prod && git add dist",
-      "posttag": "git rm -rf dist && git commit -m'chore(release): clean dist folder after release'"
+      "posttag": "pwd && ls -al && git rm -rf dist && git commit -m'chore(release): clean dist folder after release'"
     }
   }
 }

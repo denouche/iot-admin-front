@@ -74,6 +74,7 @@ node {
     }
 
     stage('Clean docker images') {
+      sh "pwd && ls -al && ls -al dist"
       sh "docker rmi ${buildImage} ${imageName} ${dockerImageVersion} ${dockerImageLatest} || true"
     }
   }
