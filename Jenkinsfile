@@ -75,7 +75,7 @@ node {
     }
 
     stage('Clean docker images') {
-      sh "pwd && ls -al && ls -al dist"
+      sh "pwd && ls -al && ls -al dist && cat npm-debug.log"
       sh "docker rmi ${buildImage} ${imageName} ${dockerImageVersion} ${dockerImageLatest} || true"
     }
   }
