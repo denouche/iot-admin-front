@@ -63,6 +63,7 @@ node {
         // Push the commit and the git tag only if docker image was successfully pushed
         sshagent (['6394728b-d88f-4534-b168-a513d8e6345b']) {
           sh "git remote -v"
+          sh "git rm -rf dist && git commit -m'chore(release): clean dist folder after release'"
           sh "git push --follow-tags origin HEAD"
         }
       }

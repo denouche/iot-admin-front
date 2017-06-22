@@ -47,8 +47,7 @@
   },
   "standard-version": {
     "scripts": {
-      "postchangelog": "grunt -v build --mode=prod && git add dist",
-      "posttag": "git rm -rf dist && git commit -m'chore(release): clean dist folder after release'"
+      "postchangelog": "grunt -v build --mode=prod && git add dist"
     }
   }
 }
