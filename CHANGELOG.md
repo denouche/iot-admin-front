@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.2.1"></a>
+## [0.2.1](https://github.com/denouche/iot-admin-front/compare/v0.2.0...v0.2.1) (2017-06-27)
+
+
+### Bug Fixes
+
+* fix table button alignment ([c9941e7](https://github.com/denouche/iot-admin-front/commit/c9941e7))
+
+
+
 <a name="0.2.0"></a>
 # [0.2.0](https://github.com/denouche/iot-admin-front/compare/v0.1.0...v0.2.0) (2017-06-27)
 
