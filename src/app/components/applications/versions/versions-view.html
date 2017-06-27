@@ -32,10 +32,6 @@
 						data-ng-options="name as name for name in model.versions.toAddPossibleNextVersions"
 						data-ng-model="model.versions.toAdd.name">
 					</select>
-					<!--input type="text"
-						class="form-control"
-						data-ng-model="model.versions.toAdd.name"
-						placeholder="1.2.3" /-->
 				</td>
 				<td>
 					<select class="form-control"
@@ -61,7 +57,7 @@
 			<tr data-ng-repeat="version in versions | orderBy:'plateform'">
 				<td data-ng-bind="name"></td>
 				<td data-ng-bind="version.plateform"></td>
-				<td>
+				<td class="text-right">
 					<button type="button" class="btn btn-default btn-xs" data-ng-click="downloadVersion(version)">
 						<span class="glyphicon glyphicon-download-alt"></span>
 					</button>
