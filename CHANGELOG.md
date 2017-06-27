@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.2.0"></a>
+# [0.2.0](https://github.com/denouche/iot-admin-front/compare/v0.1.0...v0.2.0) (2017-06-27)
+
+
+### Bug Fixes
+
+* fix jshint error ([0d6d4bc](https://github.com/denouche/iot-admin-front/commit/0d6d4bc))
+
+
+### Features
+
+* work on first version ([6f4997f](https://github.com/denouche/iot-admin-front/commit/6f4997f))
+
+
+
 <a name="0.1.0"></a>
 # [0.1.0](https://github.com/denouche/iot-admin-front/compare/v0.0.3...v0.1.0) (2017-06-22)
 
