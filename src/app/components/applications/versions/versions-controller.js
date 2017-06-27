@@ -80,7 +80,7 @@ angular.module('applications')
 
     $scope.deleteVersion = function(v) {
         IotAminApiService.deleteVersion(v._id)
-            .then(function(data) {
+            .then(function() {
                 Alerter.success('Version supprimée avec succès');
                 init();
             }, function(err) {
