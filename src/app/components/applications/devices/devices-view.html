@@ -1,0 +1,25 @@
+<div data-ng-controller="ApplicationDevicesController">
+	<div class="col-md-1 loader" data-ng-show="!model.devices.availableDevices" data-ng-include="'assets/images/loader-grey.svg'"></div>
+	<table class="table table-hover" data-ng-show="model.devices.availableDevices">
+		<thead>
+			<tr>
+				<th>Mac</th>
+				<th>Version</th>
+				<th>Plateforme</th>
+				<th>SSID</th>
+				<th>IP</th>
+				<th>Last register</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr data-ng-repeat="device in model.devices.availableDevices">
+				<td data-ng-bind="device.mac"></td>
+				<td data-ng-bind="device.metadata.version.name"></td>
+				<td data-ng-bind="device.plateform"></td>
+				<td data-ng-bind="device.ssid"></td>
+				<td data-ng-bind="device.ip"></td>
+				<td>{{device.last_register | date:'shortDate'}} {{device.last_register | date:'mediumTime'}}</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

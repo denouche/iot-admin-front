@@ -1,0 +1,11 @@
+.panel-heading button {
+	margin: 0 5px;
+}
+
+.panel-heading .glyphicon-chevron-right {
+	margin-left: 10px;
+}
+
+.tab-content {
+	margin: 20px;
+}

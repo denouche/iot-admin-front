@@ -1,3 +1,64 @@
 <div>
-apps
+
+	<p>
+		Voici la liste des applications :
+		<button type="button" class="btn btn-default btn-sm" data-ng-click="createApplication()">
+			<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Créer
+		</button>
+	</p>
+
+	<uib-accordion>
+		<div data-uib-accordion-group
+			data-ng-repeat="application in model.availableApplications"
+			class="panel-default"
+			data-is-open="application.metadata.isOpen">
+			<div data-uib-accordion-heading>
+				<div data-ng-click="selectApplication(application)"
+					data-ng-mouseover="application.metadata.isOver = true"
+                    data-ng-mouseleave="application.metadata.isOver = false">
+					<span data-ng-show="!application.metadata.edition">{{application.name}}</span>
+					<input type="text" data-ng-model="application.metadata.newName"
+						data-ng-click="$event.stopPropagation();$event.preventDefault()"
+						data-ng-show="application.metadata.edition">
+					<button type="button"
+						data-ng-click="$event.stopPropagation();$event.preventDefault();saveEdition(application)"
+						data-ng-show="application.metadata.edition"
+						class="btn btn-default btn-xs">
+						<span class="glyphicon glyphicon-ok"></span>
+					</button>
+					<button type="button"
+						data-ng-click="$event.stopPropagation();$event.preventDefault();cancelEdition(application)"
+						data-ng-show="application.metadata.edition"
+						class="btn btn-default btn-xs">
+						<span class="glyphicon glyphicon-remove"></span>
+					</button>
+
+					<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': application.metadata.isOpen, 'glyphicon-chevron-right': !application.metadata.isOpen}"></i>
+					<button type="button"
+						data-ng-click="$event.stopPropagation();$event.preventDefault();deleteApplication(application)"
+						data-ng-show="application.metadata.isOver"
+						class="pull-right btn btn-default btn-xs">
+						<span class="glyphicon glyphicon-trash"></span>
+					</button>
+					<button type="button"
+						data-ng-click="$event.stopPropagation();$event.preventDefault();editApplication(application)"
+						data-ng-show="application.metadata.isOver"
+						class="pull-right btn btn-default btn-xs">
+						<span class="glyphicon glyphicon-pencil"></span>
+					</button>
+				</div>
+			</div>
+			
+			<uib-tabset active="active">
+				<uib-tab index="0" heading="Versions" data-select="selectTab('versions')">
+					<div data-ng-include="'app/components/applications/versions/versions-view.html'"></div>
+				</uib-tab>
+				<uib-tab index="1" heading="Devices" data-select="selectTab('devices')">
+					<div data-ng-include="'app/components/applications/devices/devices-view.html'"></div>
+				</uib-tab>
+			</uib-tabset>
+
+		</div>
+	</uib-accordion>
+
 </div>

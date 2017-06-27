@@ -31,11 +31,16 @@ module.exports = {
             'node_modules/angular-sanitize/angular-sanitize.min.js',
             'node_modules/angular-animate/angular-animate.min.js',
             'node_modules/angular-touch/angular-touch.min.js',
-            'node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js'
+            'node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js',
+            'node_modules/angular-toastr/dist/angular-toastr.tpls.min.js',
+            'node_modules/angular-utils/dist/angular-utils.min.js',
+            'node_modules/angular-file-saver/dist/angular-file-saver.bundle.min.js',
+            'node_modules/compare-versions/index.js'
         ],
         css: [
             'node_modules/bootstrap/dist/css/bootstrap.min.css',
-            'node_modules/angular-ui-bootstrap/dist/ui-bootstrap-csp.css'
+            'node_modules/angular-ui-bootstrap/dist/ui-bootstrap-csp.css',
+            'node_modules/angular-toastr/dist/angular-toastr.min.css'
         ],
         assets: [
             'node_modules/bootstrap/dist/fonts/glyphicons-*',

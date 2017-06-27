@@ -1,0 +1,77 @@
+<div data-ng-controller="ApplicationVersionsController">
+	<table class="table table-hover">
+		<thead>
+			<tr>
+				<th>Version</th>
+				<th>Plateforme</th>
+				<th></th>
+				<th style="width: 110px;"></th>
+			</tr>
+		</thead>
+		<tbody data-ng-show="!model.versions.availableVersions">
+			<tr>
+				<td colspan="4">
+					<div class="col-md-1 loader"
+						style="width: 100%;"
+						data-ng-include="'assets/images/loader-grey.svg'"></div>
+				</td>
+			</tr>
+		</tbody>
+		<tbody data-ng-show="model.versions.availableVersions">
+			<tr data-ng-show="!model.versions.inlineAdd" data-ng-click="showInlineAdd()"
+				class="info inline-add">
+				<td colspan="3">Ajouter une version en cliquant ici</td>
+				<td>
+					<span class="glyphicon glyphicon-plus"></span>
+				</td>
+			</tr>
+			<tr data-ng-show="model.versions.inlineAdd"
+				class="info">
+				<td>
+					<select class="form-control"
+						data-ng-options="name as name for name in model.versions.toAddPossibleNextVersions"
+						data-ng-model="model.versions.toAdd.name">
+					</select>
+					<!--input type="text"
+						class="form-control"
+						data-ng-model="model.versions.toAdd.name"
+						placeholder="1.2.3" /-->
+				</td>
+				<td>
+					<select class="form-control"
+						data-ng-options="plateform as plateform for plateform in model.versions.availablePlateforms"
+						data-ng-model="model.versions.toAdd.plateform">
+					</select>
+				</td>
+				<td>
+					<input type="file" id="versionsToAddFirmware"
+                        accept="application/x-bittorrent" data-file-model="model.versions.toAdd.firmware"/>
+				</td>
+				<td>
+					<button type="button" class="btn btn-default btn-xs" data-ng-click="saveInlineAdd()">
+						<span class="glyphicon glyphicon-ok"></span>
+					</button>
+					<button type="button" class="btn btn-default btn-xs" data-ng-click="resetInlineAdd()">
+						<span class="glyphicon glyphicon-remove"></span>
+					</button>
+				</td>
+			</tr>
+		</tbody>
+		<tbody data-ng-show="model.versions.availableVersions" data-ng-repeat="(name, versions) in model.versions.availableVersions">
+			<tr data-ng-repeat="version in versions | orderBy:'plateform'">
+				<td data-ng-bind="name"></td>
+				<td data-ng-bind="version.plateform"></td>
+				<td>
+					<button type="button" class="btn btn-default btn-xs" data-ng-click="downloadVersion(version)">
+						<span class="glyphicon glyphicon-download-alt"></span>
+					</button>
+				</td>
+				<td>
+					<button type="button" class="btn btn-default btn-xs" data-ng-click="deleteVersion(version)">
+						<span class="glyphicon glyphicon-trash"></span>
+					</button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

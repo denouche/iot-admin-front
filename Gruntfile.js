@@ -25,6 +25,19 @@ module.exports = function (grunt) {
         return filename.replace(/^src\//, '').replace(/^tmp\//, '../tmp/').replace(/^node_modules\//, '../node_modules/');
     }
 
+    function withHeader(from, to, headerName, defaultValue) {
+        if(!to.headers) {
+            to.headers = {};
+        }
+        if(from.headers && from.headers[headerName]) {
+            to.headers[headerName] = from.headers[headerName];
+        }
+        else if(defaultValue) {
+            to.headers[headerName] = defaultValue;
+        }
+        return to;
+    }
+
     var getTemplateVariables = function () {
         return function () {
             var vars = null,
@@ -130,9 +143,9 @@ module.exports = function (grunt) {
                             let baseUriPattern = new RegExp('^/(api)/(.*)?'),
                                 baseUriMatcher = req.url.match(baseUriPattern);
                             if(baseUriPattern.test(req.url)) {
-                                let body = '';
+                                let body = [];
                                 req.on('data', function(chunk) {
-                                    body += chunk;
+                                    body.push(chunk);
                                 }).on('end', function() {
                                     let defaultUrl = process.env['API_URL'],
                                         urlPattern = new RegExp('^(https?:)//([^/:]+)(?::(\\d+))?(/.*)?$'),
@@ -149,15 +162,17 @@ module.exports = function (grunt) {
                                     
 
                                     grunt.log.writeln(`Proxy request from [${req.method} ${req.url}] to [${req.method} ${matcher[1]}//${matcher[2] + (matcher[3] ? ':' + matcher[3] : '') + destPath}]`);
+
                                     let reqParams = {
                                         protocol: matcher[1],
                                         host: matcher[2],
                                         method: req.method,
                                         path: destPath,
-                                        headers: {
-                                            accept: req.headers.accept || 'application/json'
-                                        }
+                                        headers: {}
                                     };
+                                    reqParams = withHeader(req, reqParams, 'content-type');
+                                    reqParams = withHeader(req, reqParams, 'accept', 'application/json');
+
                                     let caller;
                                     if(matcher[1] === 'http:') {
                                         caller = http;
@@ -172,15 +187,17 @@ module.exports = function (grunt) {
                                     }
                                     
                                     let proxyfiedRequest = caller.request(reqParams, function(proxyfiedResponse) {
-                                        let proxyfiedResponseBody = '';
+                                        let proxyfiedResponseBody = [];
                                         proxyfiedResponse.on('data', function(chunk) {
-                                            proxyfiedResponseBody += chunk;
+                                            proxyfiedResponseBody.push(chunk);
                                         }).on('end', function() {
                                             res.statusCode = proxyfiedResponse.statusCode;
-                                            res.end(proxyfiedResponseBody);
+                                            res = withHeader(proxyfiedResponse, res, 'content-type');
+                                            res = withHeader(proxyfiedResponse, res, 'content-disposition');
+                                            res.end(Buffer.concat(proxyfiedResponseBody));
                                         });
                                     });
-                                    proxyfiedRequest.write(body);
+                                    proxyfiedRequest.write(Buffer.concat(body));
                                     proxyfiedRequest.end();
                                 });
                             }

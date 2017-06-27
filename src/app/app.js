@@ -6,6 +6,9 @@ angular.module('iotAdminApplication', [
     'ngSanitize',
     'ngTouch',
     'ui.bootstrap',
+    'ngFileSaver',
+    'toastr',
+    'utils',
     'config',
     'templates-app',
     'applications'

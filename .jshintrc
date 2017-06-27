@@ -29,7 +29,8 @@
     "predef"    : [
         "angular",
         "_",
-        "moment"
+        "moment",
+        "compareVersions"
     ]
 }
 
