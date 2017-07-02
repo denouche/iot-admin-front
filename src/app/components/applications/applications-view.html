@@ -1,37 +1,57 @@
 <div>
 
 	<p>
-		Voici la liste des applications :
+		Applications list :
 		<button type="button" class="btn btn-default btn-sm" data-ng-click="createApplication()">
-			<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Créer
+			<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Create
 		</button>
 	</p>
 
 	<uib-accordion>
+
+		<div data-uib-accordion-group
+		 	data-ng-show="model.hasUnlinkedDevices"
+			class="panel-default"
+			data-is-open="model.hasUnlinkedDevices">
+			<div data-uib-accordion-heading>
+				<div data-ng-click="selectApplication()">
+					<span>Unassociated applications</span>
+					
+					<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': TODO.isOpen, 'glyphicon-chevron-right': !TODO.isOpen}"></i>
+				</div>
+			</div>
+
+			<div data-ng-include="'app/components/applications/devices/devices-view.html'"></div>
+		</div>
+
 		<div data-uib-accordion-group
 			data-ng-repeat="application in model.availableApplications"
 			class="panel-default"
-			data-is-open="application.metadata.isOpen">
+			data-is-open="application.metadata.isOpen"
+			data-ng-show="!model.loadingApplications">
 			<div data-uib-accordion-heading>
 				<div data-ng-click="selectApplication(application)"
 					data-ng-mouseover="application.metadata.isOver = true"
-                    data-ng-mouseleave="application.metadata.isOver = false">
-					<span data-ng-show="!application.metadata.edition">{{application.name}}</span>
-					<input type="text" data-ng-model="application.metadata.newName"
-						data-ng-click="$event.stopPropagation();$event.preventDefault()"
-						data-ng-show="application.metadata.edition">
-					<button type="button"
-						data-ng-click="$event.stopPropagation();$event.preventDefault();saveEdition(application)"
-						data-ng-show="application.metadata.edition"
-						class="btn btn-default btn-xs">
-						<span class="glyphicon glyphicon-ok"></span>
-					</button>
-					<button type="button"
-						data-ng-click="$event.stopPropagation();$event.preventDefault();cancelEdition(application)"
-						data-ng-show="application.metadata.edition"
-						class="btn btn-default btn-xs">
-						<span class="glyphicon glyphicon-remove"></span>
-					</button>
+                    data-ng-mouseleave="application.metadata.isOver = false"
+                    class="form-inline">
+					<span data-ng-if="!application.metadata.edition">{{application.name}}</span>
+					<span data-ng-if="application.metadata.edition">
+						<input type="text" data-ng-model="application.metadata.newName"
+							data-ng-click="$event.stopPropagation();$event.preventDefault()"
+							class="form-control">
+						<button type="button"
+							data-ng-click="$event.stopPropagation();$event.preventDefault();saveEdition(application)"
+							data-ng-show="application.metadata.edition"
+							class="btn btn-default btn-xs">
+							<span class="glyphicon glyphicon-ok"></span>
+						</button>
+						<button type="button"
+							data-ng-click="$event.stopPropagation();$event.preventDefault();cancelEdition(application)"
+							data-ng-show="application.metadata.edition"
+							class="btn btn-default btn-xs">
+							<span class="glyphicon glyphicon-remove"></span>
+						</button>
+					</span>
 
 					<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': application.metadata.isOpen, 'glyphicon-chevron-right': !application.metadata.isOpen}"></i>
 					<button type="button"
@@ -50,15 +70,15 @@
 			</div>
 			
 			<uib-tabset active="active">
-				<uib-tab index="0" heading="Versions" data-select="selectTab('versions')">
-					<div data-ng-include="'app/components/applications/versions/versions-view.html'"></div>
-				</uib-tab>
-				<uib-tab index="1" heading="Devices" data-select="selectTab('devices')">
+				<uib-tab index="0" heading="Devices" data-select="selectTab('devices')">
 					<div data-ng-include="'app/components/applications/devices/devices-view.html'"></div>
 				</uib-tab>
+				<uib-tab index="1" heading="Versions" data-select="selectTab('versions')">
+					<div data-ng-include="'app/components/applications/versions/versions-view.html'"></div>
+				</uib-tab>
 			</uib-tabset>
-
 		</div>
+
 	</uib-accordion>
 
 </div>

@@ -1,35 +1,50 @@
 angular.module('applications')
-.controller('ApplicationsController', function ($scope, IotAminApiService, Alerter) {
+.controller('ApplicationsController', function ($scope, IotAminApiService, Alerter, $timeout) {
     'use strict';
-
-    console.log('ApplicationsController');
     
     $scope.model = {
         availableApplications: [],
+        loadingApplications: false,
         selected: {
             application: null
-        }
+        },
+        hasUnlinkedDevices: false
     };
 
     function init() {
+        $scope.model.loadingApplications = true;
     	IotAminApiService.getApplications()
     		.then(function(data) {
                 $scope.model.availableApplications = _.forEach(data, function(e) {
                     e.metadata = {
-                        isOpen: false
+                        isOpen: false,
+                        edition: false
                     };
                 });
+                $scope.model.loadingApplications = false;
     			console.log('availableApplications', data);
     		}, function(err) {
     			console.error(err);
     		});
+        IotAminApiService.searchDevices('')
+                .then(function(data) {
+                    console.log('ici', data);
+                    if(data.length > 0) {
+                        $scope.model.hasUnlinkedDevices = true;
+                        $timeout($scope.selectApplication); // Need to defer the loading
+                    }
+                }, function(err) {
+                    console.error(err);
+                    Alerter.error('Une erreur est survenue lors du chargement des informations');
+                });
     }
 
     init();
 
     $scope.selectApplication = function(app) {
+        console.log('selectApplication', app);
         $scope.model.selected.application = app;
-        $scope.selectTab('versions');
+        $scope.selectTab('devices');
     };
 
     $scope.selectTab = function(tabName) {
@@ -49,7 +64,6 @@ angular.module('applications')
 
     $scope.deleteApplication = function(app) {
         app.metadata.isOpen = !app.metadata.isOpen;
-        console.log('deleteApplication', app.metadata);
         app.metadata.isOpen = !app.metadata.isOpen;
         IotAminApiService.deleteApplication(app._id)
             .then(function() {

@@ -89,6 +89,29 @@ angular.module('iot-admin-api-module')
         });
     };
 
+    this.modifyVersion = function(version) {
+        var fd = new FormData();
+        
+        if(version.firmware) {
+            fd.append('firmware', version.firmware);
+        }
+
+        fd.append('name', version.name);
+        fd.append('plateform', version.plateform);
+        fd.append('_application', version._application);
+
+        return $http({
+            method: 'PUT',
+            url: Configuration.apiBasePath + '/versions/' + version._id,
+            data: fd,
+            transformRequest: angular.identity,
+            headers: {'Content-Type': undefined}
+        })
+        .then(function (data) {
+            return data.data;
+        });
+    };
+
     this.downloadVersion = function(versionId) {
         return $http({
             method: 'GET',
@@ -107,6 +130,29 @@ angular.module('iot-admin-api-module')
         return $http({
             method: 'DELETE',
             url: Configuration.apiBasePath + '/versions/' + versionId
+        })
+        .then(function(data) {
+            return data.data;
+        });
+    };
+
+    this.searchDevices = function(applicationName) {
+        return $http({
+            method: 'GET',
+            url: Configuration.apiBasePath + '/devices',
+            params: {
+                application: applicationName
+            }
+        })
+        .then(function(data) {
+            return data.data;
+        });
+    };
+
+    this.deleteDevice = function(deviceId) {
+        return $http({
+            method: 'DELETE',
+            url: Configuration.apiBasePath + '/devices/' + deviceId
         })
         .then(function(data) {
             return data.data;

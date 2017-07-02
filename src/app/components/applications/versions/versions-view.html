@@ -3,7 +3,7 @@
 		<thead>
 			<tr>
 				<th>Version</th>
-				<th>Plateforme</th>
+				<th>Plateform</th>
 				<th></th>
 				<th style="width: 110px;"></th>
 			</tr>
@@ -20,7 +20,7 @@
 		<tbody data-ng-show="model.versions.availableVersions">
 			<tr data-ng-show="!model.versions.inlineAdd" data-ng-click="showInlineAdd()"
 				class="info inline-add">
-				<td colspan="3">Ajouter une version en cliquant ici</td>
+				<td colspan="3">Click here to add a version</td>
 				<td>
 					<span class="glyphicon glyphicon-plus"></span>
 				</td>
@@ -28,10 +28,12 @@
 			<tr data-ng-show="model.versions.inlineAdd"
 				class="info">
 				<td>
-					<select class="form-control"
+					<input type="text" data-ng-model="model.versions.toAdd.name"
+						placeholder="1.2.3" class="form-control">
+					<!--select class="form-control"
 						data-ng-options="name as name for name in model.versions.toAddPossibleNextVersions"
 						data-ng-model="model.versions.toAdd.name">
-					</select>
+					</select-->
 				</td>
 				<td>
 					<select class="form-control"
@@ -41,7 +43,7 @@
 				</td>
 				<td>
 					<input type="file" id="versionsToAddFirmware"
-                        accept="application/x-bittorrent" data-file-model="model.versions.toAdd.firmware"/>
+                        data-file-model="model.versions.toAdd.firmware"/>
 				</td>
 				<td>
 					<button type="button" class="btn btn-default btn-xs" data-ng-click="saveInlineAdd()">
@@ -58,8 +60,30 @@
 				<td data-ng-bind="name"></td>
 				<td data-ng-bind="version.plateform"></td>
 				<td class="text-right">
-					<button type="button" class="btn btn-default btn-xs" data-ng-click="downloadVersion(version)">
-						<span class="glyphicon glyphicon-download-alt"></span>
+					<span data-ng-if="version.metadata.edition">
+						<input type="file" id="versionToEditFirmware-{{version._id}}"
+	                        data-file-model="version.firmware"
+	                        style="display: inline;"/>
+						<button type="button" class="btn btn-default btn-xs"
+							data-ng-click="saveVersion(version)">
+							<span class="glyphicon glyphicon-ok"></span>
+						</button>
+						<button type="button" class="btn btn-default btn-xs"
+							style="margin-right: 30px;"
+							data-ng-click="resetVersionEdition(version)">
+							<span class="glyphicon glyphicon-remove"></span>
+						</button>
+	                </span>
+					<button type="button" class="btn btn-default btn-xs"
+						data-ng-click="downloadVersion(version)"
+						data-ng-disabled="!version.hasFirmware"
+						data-uib-tooltip="Download the firmware">
+						<span class="glyphicon glyphicon-download"></span>
+					</button>
+					<button type="button" class="btn btn-default btn-xs"
+						data-ng-click="editVersion(version)"
+						data-uib-tooltip="Upload a new firmware for this version and plateform">
+						<span class="glyphicon glyphicon-upload"></span>
 					</button>
 				</td>
 				<td>

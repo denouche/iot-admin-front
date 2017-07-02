@@ -5,10 +5,12 @@
 			<tr>
 				<th>Mac</th>
 				<th>Version</th>
-				<th>Plateforme</th>
+				<th>Plateform</th>
 				<th>SSID</th>
 				<th>IP</th>
 				<th>Last register</th>
+				<th>Comment</th>
+				<th></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -19,6 +21,12 @@
 				<td data-ng-bind="device.ssid"></td>
 				<td data-ng-bind="device.ip"></td>
 				<td>{{device.last_register | date:'shortDate'}} {{device.last_register | date:'mediumTime'}}</td>
+				<td data-ng-bind="device.comment"></td>
+				<td>
+					<button type="button" class="btn btn-default btn-xs" data-ng-click="deleteDevice(device)">
+						<span class="glyphicon glyphicon-trash"></span>
+					</button>
+				</td>
 			</tr>
 		</tbody>
 	</table>
