@@ -68,7 +68,7 @@ angular.module('applications')
     };
 
     $scope.saveInlineAdd = function() {
-        $scope.model.versions.toAdd._application = $scope.model.versions.application._id;
+        $scope.model.versions.toAdd.application = $scope.model.versions.application.name;
         IotAminApiService.addVersion($scope.model.versions.toAdd)
             .then(function() {
                 Alerter.success('Version ajoutée avec succès');
