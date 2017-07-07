@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.3.1"></a>
+## [0.3.1](https://github.com/denouche/iot-admin-front/compare/v0.3.0...v0.3.1) (2017-07-07)
+
+
+### Bug Fixes
+
+* do not create version using application id but application name ([13cc494](https://github.com/denouche/iot-admin-front/commit/13cc494))
+
+
+
 <a name="0.3.0"></a>
 # [0.3.0](https://github.com/denouche/iot-admin-front/compare/v0.2.1...v0.3.0) (2017-07-02)
 
