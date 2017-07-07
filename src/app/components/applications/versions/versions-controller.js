@@ -113,7 +113,6 @@ angular.module('applications')
     };
 
     $scope.saveVersion = function(version) {
-        console.log('saveVersion', version);
         IotAminApiService.modifyVersion(version)
             .then(function() {
                 Alerter.success('Version ajoutée avec succès');

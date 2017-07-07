@@ -75,7 +75,7 @@ angular.module('iot-admin-api-module')
 
         fd.append('name', version.name);
         fd.append('plateform', version.plateform);
-        fd.append('_application', version._application);
+        fd.append('application', version.application);
 
         return $http({
             method: 'POST',
@@ -98,7 +98,7 @@ angular.module('iot-admin-api-module')
 
         fd.append('name', version.name);
         fd.append('plateform', version.plateform);
-        fd.append('_application', version._application);
+        fd.append('application', version.application);
 
         return $http({
             method: 'PUT',
