@@ -56,7 +56,7 @@ angular.module('applications')
             $scope.application._id === $scope.model.devices.application._id) {
             init();
         }
-        else if (!application) {
+        else if (!$scope.application && !application) {
             initUnlinkedDevices();
         }
     });

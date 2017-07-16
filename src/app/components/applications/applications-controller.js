@@ -8,7 +8,10 @@ angular.module('applications')
         selected: {
             application: null
         },
-        hasUnlinkedDevices: false
+        unlinkedDevices: {
+            has: true,
+            open: true
+        }
     };
 
     function init() {
@@ -30,7 +33,7 @@ angular.module('applications')
                 .then(function(data) {
                     console.log('ici', data);
                     if(data.length > 0) {
-                        $scope.model.hasUnlinkedDevices = true;
+                        $scope.model.unlinkedDevices.has = true;
                         $timeout($scope.selectApplication); // Need to defer the loading
                     }
                 }, function(err) {
@@ -42,7 +45,6 @@ angular.module('applications')
     init();
 
     $scope.selectApplication = function(app) {
-        console.log('selectApplication', app);
         $scope.model.selected.application = app;
         $scope.selectTab('devices');
     };
