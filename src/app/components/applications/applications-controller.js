@@ -1,7 +1,7 @@
 angular.module('applications')
 .controller('ApplicationsController', function ($scope, IotAminApiService, Alerter, $timeout) {
     'use strict';
-    
+
     $scope.model = {
         availableApplications: [],
         loadingApplications: false,
@@ -63,6 +63,12 @@ angular.module('applications')
                 Alerter.error("Une erreur est survenue lors de la création de l'application");
             });
     };
+
+    $scope.deleteConfirmation = function(app){
+      if (confirm("Delete application?")) {
+        $scope.deleteApplication(application);
+      }
+    }
 
     $scope.deleteApplication = function(app) {
         app.metadata.isOpen = !app.metadata.isOpen;
