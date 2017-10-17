@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.4.0"></a>
+# [0.4.0](https://github.com/denouche/iot-admin-front/compare/v0.3.5...v0.4.0) (2017-10-17)
+
+
+### Bug Fixes
+
+* **ui:** Hide the Unassociated applications by default if empty ([5dc6f95](https://github.com/denouche/iot-admin-front/commit/5dc6f95))
+
+
+### Features
+
+* ask to confirm before to delete a version ([6cc85ab](https://github.com/denouche/iot-admin-front/commit/6cc85ab)), closes [#6](https://github.com/denouche/iot-admin-front/issues/6)
+
+
+
 <a name="0.3.5"></a>
 ## [0.3.5](https://github.com/denouche/iot-admin-front/compare/v0.3.4...v0.3.5) (2017-10-17)
 
