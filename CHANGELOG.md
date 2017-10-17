@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.3.5"></a>
+## [0.3.5](https://github.com/denouche/iot-admin-front/compare/v0.3.4...v0.3.5) (2017-10-17)
+
+
+### Bug Fixes
+
+* fix delete application confirmation, and lint ([b2d9b6c](https://github.com/denouche/iot-admin-front/commit/b2d9b6c)), closes [#2](https://github.com/denouche/iot-admin-front/issues/2)
+
+
+
 <a name="0.3.4"></a>
 ## [0.3.4](https://github.com/denouche/iot-admin-front/compare/v0.3.3...v0.3.4) (2017-09-04)
 
