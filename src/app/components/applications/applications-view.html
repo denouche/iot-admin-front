@@ -16,7 +16,7 @@
 			<div data-uib-accordion-heading>
 				<div data-ng-click="selectApplication()">
 					<span>Unassociated applications</span>
-					
+
 					<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': model.unlinkedDevices.open, 'glyphicon-chevron-right': !model.unlinkedDevices.open}"></i>
 				</div>
 			</div>
@@ -55,7 +55,7 @@
 
 					<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': application.metadata.isOpen, 'glyphicon-chevron-right': !application.metadata.isOpen}"></i>
 					<button type="button"
-						data-ng-click="$event.stopPropagation();$event.preventDefault();deleteApplication(application)"
+						data-ng-click="$event.stopPropagation();$event.preventDefault();deleteConfirmation(application)"
 						data-ng-show="application.metadata.isOver"
 						class="pull-right btn btn-default btn-xs">
 						<span class="glyphicon glyphicon-trash"></span>
@@ -68,7 +68,7 @@
 					</button>
 				</div>
 			</div>
-			
+
 			<uib-tabset active="active">
 				<uib-tab index="0" heading="Devices" data-select="selectTab('devices')">
 					<div data-ng-include="'app/components/applications/devices/devices-view.html'"></div>
