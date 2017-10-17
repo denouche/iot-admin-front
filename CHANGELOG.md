@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.5.0"></a>
+# [0.5.0](https://github.com/denouche/iot-admin-front/compare/v0.4.0...v0.5.0) (2017-10-17)
+
+
+### Features
+
+* **ui:** On delete device, ask to confirm before delete ([e785d5c](https://github.com/denouche/iot-admin-front/commit/e785d5c))
+
+
+
 <a name="0.4.0"></a>
 # [0.4.0](https://github.com/denouche/iot-admin-front/compare/v0.3.5...v0.4.0) (2017-10-17)
 
