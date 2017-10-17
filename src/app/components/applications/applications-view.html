@@ -12,7 +12,7 @@
 		<div data-uib-accordion-group
 		 	data-ng-show="model.unlinkedDevices.has"
 			class="panel-default"
-			data-is-open="model.unlinkedDevices.open">
+			data-is-open="model.unlinkedDevices.open" data-ng-if="model.devices.availableDevices.size > 0">
 			<div data-uib-accordion-heading>
 				<div data-ng-click="selectApplication()">
 					<span>Unassociated applications</span>
