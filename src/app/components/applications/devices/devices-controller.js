@@ -61,6 +61,12 @@ angular.module('applications')
         }
     });
 
+    $scope.deleteConfirmation = function(device){
+        if (confirm("Delete device?")) {
+            $scope.deleteDevice(device);
+        }
+    };
+
     $scope.deleteDevice = function(device) {
         IotAminApiService.deleteDevice(device._id)
             .then(function() {
