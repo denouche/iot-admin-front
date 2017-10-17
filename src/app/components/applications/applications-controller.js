@@ -66,9 +66,9 @@ angular.module('applications')
 
     $scope.deleteConfirmation = function(app){
       if (confirm("Delete application?")) {
-        $scope.deleteApplication(application);
+        $scope.deleteApplication(app);
       }
-    }
+    };
 
     $scope.deleteApplication = function(app) {
         app.metadata.isOpen = !app.metadata.isOpen;
