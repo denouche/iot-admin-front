@@ -278,7 +278,7 @@ module.exports = function (grunt) {
                     'wait-frame'
                 ],
                 relaxerror: [
-                    'Start tag seen without seeing a doctype first. Expected “<!DOCTYPE html>“.',
+                    'Start tag seen without seeing a doctype first. Expected “<!DOCTYPE html>”.',
                     'Non-space characters found without seeing a doctype first. Expected e.g. “<!DOCTYPE html>”.',
                     'Element “head” is missing a required instance of child element “title”.',
                     'Element “title” must not be empty.',
