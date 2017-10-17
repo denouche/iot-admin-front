@@ -91,6 +91,12 @@ angular.module('applications')
             });
     };
 
+    $scope.deleteConfirmation = function(v){
+        if (confirm("Delete version?")) {
+            $scope.deleteVersion(v);
+        }
+    };
+
     $scope.deleteVersion = function(v) {
         IotAminApiService.deleteVersion(v._id)
             .then(function() {
